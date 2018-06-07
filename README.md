@@ -1,93 +1,95 @@
-Programa para codificaÁ„o de e decodifiÁ„o de mensagem atravÈs cifra de CÈsar com fator de deslocamento fixo 33 (ROT7)
+Programa para codifica√ß√£o de e decodifi√ß√£o de mensagem atrav√©s cifra de C√©sar com fator de deslocamento fixo 33 (ROT7)
 
-InÌcio
+In√≠cio
 
-- … aberta uma p·gina HTML (index.html) e um prompt È inicializado pedindo que o usu·rio insira a mensagem que deseja ser criptografada;
+- √â aberta uma p√°gina HTML (index.html) e um prompt √© inicializado pedindo que o usu√°rio insira a mensagem que deseja ser criptografada;
 
-- No arquivo java script È chamada a funÁ„o para codificaÁ„o (function cipher(message,lag){}) com par‚metros de mensagem vari·vel e deslocamento fixo (var messageCiphered = cipher('0',33)); 
+- No arquivo java script √© chamada a fun√ß√£o para codifica√ß√£o (function cipher(message,lag){}) com par√¢metros de mensagem vari√°vel e deslocamento fixo (var messageCiphered = cipher('0',33)); 
 
-- A funÁ„o atravÈs do prompt pede ao usu·rio que digite uma mensagem a ser codificada:
+- A fun√ß√£o atrav√©s do prompt pede ao usu√°rio que digite uma mensagem a ser codificada:
 
-var message = prompt("Digite uma mensagem para ser cifrada.\nObs.: A mensagem deve conter apenas letras(sem acentos) e espaÁos");
+var message = prompt("Digite uma mensagem para ser cifrada.\nObs.: A mensagem deve conter apenas letras(sem acentos) e espa√ßos");
 
-- A mensagem deve conter apenas letras, mai˙sculas e min˙sculas (sem acentos) e espaÁos. Enquanto a condiÁ„o n„o for satisfeita o processo permanece em loop: 
+- A mensagem deve conter apenas letras, mai√∫sculas e min√∫sculas (sem acentos) e espa√ßos. Enquanto a condi√ß√£o n√£o for satisfeita o processo permanece em loop: 
 
 (while (message.search(/[^A-Za-z\s]/) !== -1 || message[0] === undefined) {
-     var message = prompt("Digite uma mensagem para ser cifrada.\nObs.: A mensagem deve conter apenas letras(sem acentos) e espaÁos");
+     var message = prompt("Digite uma mensagem para ser cifrada.\nObs.: A mensagem deve conter apenas letras(sem acentos) e espa√ßos");
   };
 
-Processamento de codificaÁ„o ñ FunÁ„o cipher
+Processamento de codifica√ß√£o ‚Äì Fun√ß√£o cipher
 
-- Quando a condiÁ„o de entrada de mensagem È satisfeita s„o declaradas as vari·veis que ser„o utilizadas no processamento:
+- Quando a condi√ß√£o de entrada de mensagem √© satisfeita s√£o declaradas as vari√°veis que ser√£o utilizadas no processamento:
 
-1- Vari·vel que receber· os n˙meros dos strings equivalentes na tabela ASCII (var charCodeNum = 0) ;
-2- Vari·vel que receber· o valor numÈrico da codificaÁ„o (var letterCiphered = 0);
-3- Vari·vel do tipo array que recebera os strings da mensagem codificadas (var cipheredMessage = []); 
+1- Vari√°vel que receber√° os n√∫meros dos strings equivalentes na tabela ASCII (var charCodeNum = 0) ;
+2- Vari√°vel que receber√° o valor num√©rico da codifica√ß√£o (var letterCiphered = 0);
+3- Vari√°vel do tipo array que recebera os strings da mensagem codificadas (var cipheredMessage = []); 
 
-- O processo de codificaÁ„o È executado da seguinte maneira:
+- O processo de codifica√ß√£o √© executado da seguinte maneira:
 
-1- Uma funÁ„o percorre cada uma dos strings da mensagem e o valor numÈrico de obtido pela funÁ„o String.prototype.charCodeAt()
-cada posiÁ„o È guardado em uma vari·vel:
+1- Uma fun√ß√£o percorre cada uma dos strings da mensagem e o valor num√©rico de obtido pela fun√ß√£o String.prototype.charCodeAt()
+cada posi√ß√£o √© guardado em uma vari√°vel:
 for (var i = 0; i < message.length; i++) {
 	charCodeNum = message[i].charCodeAt();
 
-2- Se o n˙mero estiver no intervalo ASCII de letras mai˙sculas (65 a 90), È aplicada a equaÁ„o de deslocamento para o n˙mero desse intervalo e armazenado em uma vari·vel. O array de mensagem codificada recebe esse n˙mero e transforma na letra equivalente da tabela ASCII codificada:
+2- Se o n√∫mero estiver no intervalo ASCII de letras mai√∫sculas (65 a 90), √© aplicada a equa√ß√£o de deslocamento para o n√∫mero desse intervalo e armazenado em uma vari√°vel. O array de mensagem codificada recebe esse n√∫mero e transforma na letra equivalente da tabela ASCII codificada:
 if (charCodeNum >= 65 && charCodeNum <= 90) {
 	  letterCiphered = (charCodeNum - 65 + lag) % 26 + 65;
       cipheredMessage.push(String.fromCharCode(letterCiphered));
 
-3- Se o n˙mero estiver no intervalo ASCII de letras min˙sculas (97 a 122), È aplicada a equaÁ„o de deslocamento para o n˙mero desse intervalo e armazenado em uma vari·vel. O array de mensagem codificada recebe esse n˙mero e transforma na letra equivalente da tabela ASCII codificada:
+3- Se o n√∫mero estiver no intervalo ASCII de letras min√∫sculas (97 a 122), √© aplicada a equa√ß√£o de deslocamento para o n√∫mero desse intervalo e armazenado em uma vari√°vel. O array de mensagem codificada recebe esse n√∫mero e transforma na letra equivalente da tabela ASCII codificada:
 else if (charCodeNum >= 97 && charCodeNum <= 122) {
 	    letterCiphered = (charCodeNum - 97 + lag) % 26 + 97;
 	    cipheredMessage.push(String.fromCharCode(letterCiphered));
 
-4- Se o n˙mero for equivalente ao espaÁo na tabela ASCII (32), o array de mensagem codificada recebe a posiÁ„o 35 convertida para o sÌmbolo #.
+4- Se o n√∫mero for equivalente ao espa√ßo na tabela ASCII (32), o array de mensagem codificada recebe a posi√ß√£o 35 convertida para o s√≠mbolo #.
 else if (charCodeNum === 32) {
 	    letterCiphered = 35;
 	    cipheredMessage.push(String.fromCharCode(letterCiphered));
 
-5- Quando a funÁ„o termina de percorrer as strings da mensagem o processo se encerra e os novos caracteres codificados est„o armazenados no array ëcipheredMessageí;
+5- Quando a fun√ß√£o termina de percorrer as strings da mensagem o processo se encerra e os novos caracteres codificados est√£o armazenados no array ‚ÄòcipheredMessage‚Äô;
 
-6- Nesse momento È retornado a p·gina HTML a mensagem codificada com a utilizaÁ„o da funÁ„o  Array.prototype.join() para unir os caracteres de forma contÌnua:
+6- Nesse momento √© retornado a p√°gina HTML a mensagem codificada com a utiliza√ß√£o da fun√ß√£o  Array.prototype.join() para unir os caracteres de forma cont√≠nua:
 return document.getElementById('messageCiphered').innerHTML = cipheredMessage.join('').
 
 
-Processamento de decodificaÁ„o ñ FunÁ„o decipher
+Processamento de decodifica√ß√£o ‚Äì Fun√ß√£o decipher
 
-- ApÛs a codificaÁ„o È chamada a funÁ„o (function decipher(message,lag) {}) para decodificar recebendo como par‚metro a mensagem codificada e o fator de deslocamento fixo 33:
+- Ap√≥s a codifica√ß√£o √© chamada a fun√ß√£o (function decipher(message,lag) {}) para decodificar recebendo como par√¢metro a mensagem codificada e o fator de deslocamento fixo 33:
 var messageDeciphered = decipher(messageCiphered,33);
 
-- S„o declaradas as vari·veis que ser„o utilizadas no processamento:
+- S√£o declaradas as vari√°veis que ser√£o utilizadas no processamento:
 
-1- Vari·vel que receber· os n˙meros dos strings equivalentes na tabela ASCII (var charCodeNum = 0) ;
-2- Vari·vel que receber· o valor numÈrico da decodificaÁ„o (var letterDeciphered = 0);
-3- Vari·vel do tipo array que recebera os strings da mensagem decodificadas (var decipheredMessage = []).
+1- Vari√°vel que receber√° os n√∫meros dos strings equivalentes na tabela ASCII (var charCodeNum = 0) ;
+2- Vari√°vel que receber√° o valor num√©rico da decodifica√ß√£o (var letterDeciphered = 0);
+3- Vari√°vel do tipo array que recebera os strings da mensagem decodificadas (var decipheredMessage = []).
 
-- O processo de decodificaÁ„o È executado da seguinte maneira:
+- O processo de decodifica√ß√£o √© executado da seguinte maneira:
 
-1- Uma funÁ„o percorre cada uma dos strings da mensagem e o valor numÈrico de obtido pela funÁ„o String.prototype.charCodeAt()
-cada posiÁ„o È guardado em uma vari·vel:
+1- Uma fun√ß√£o percorre cada uma dos strings da mensagem e o valor num√©rico de obtido pela fun√ß√£o String.prototype.charCodeAt()
+cada posi√ß√£o √© guardado em uma vari√°vel:
 for (var i = 0; i < message.length; i++) {
 	charCodeNum = message[i].charCodeAt();
 
-2- Se o n˙mero estiver no intervalo ASCII de letras mai˙sculas (65 a 90), È aplicada a equaÁ„o de deslocamento para o n˙mero desse intervalo e armazenado em uma vari·vel. O array de mensagem decodificada recebe esse n˙mero e transforma na letra equivalente da tabela ASCII codificada:
+2- Se o n√∫mero estiver no intervalo ASCII de letras mai√∫sculas (65 a 90), √© aplicada a equa√ß√£o de deslocamento para o n√∫mero desse intervalo e armazenado em uma vari√°vel. O array de mensagem decodificada recebe esse n√∫mero e transforma na letra equivalente da tabela ASCII codificada:
 if (charCodeNum >= 65 && charCodeNum <= 90) {
 	  letterDeciphered = (charCodeNum - 90 - lag) % 26 + 90;
 	  decipheredMessage.push(String.fromCharCode(letterDeciphered));
 
-3- Se o n˙mero estiver no intervalo ASCII de letras min˙sculas (97 a 122), È aplicada a equaÁ„o de deslocamento para o n˙mero desse intervalo e armazenado em uma vari·vel. O array de mensagem decodificada recebe esse n˙mero e transforma na letra equivalente da tabela ASCII codificada:
+3- Se o n√∫mero estiver no intervalo ASCII de letras min√∫sculas (97 a 122), √© aplicada a equa√ß√£o de deslocamento para o n√∫mero desse intervalo e armazenado em uma vari√°vel. O array de mensagem decodificada recebe esse n√∫mero e transforma na letra equivalente da tabela ASCII codificada:
 else if (charCodeNum >= 97 && charCodeNum <= 122) {
 	    letterDeciphered = (charCodeNum -122 - lag) % 26 + 122;
 	    decipheredMessage.push(String.fromCharCode(letterDeciphered));
 
-4- Se o n˙mero for equivalente ao espaÁo na tabela ASCII (35), o array de mensagem codificada recebe a posiÁ„o 32 convertida para espaÁo
+4- Se o n√∫mero for equivalente ao espa√ßo na tabela ASCII (35), o array de mensagem codificada recebe a posi√ß√£o 32 convertida para espa√ßo
 else if (charCodeNum === 35){
 	    letterDeciphered = 32;
 	    decipheredMessage.push(String.fromCharCode(letterDeciphered));
 
-5- Quando a funÁ„o termina de percorrer as strings da mensagem o processo se encerra e os novos caracteres decodificados est„o armazenados no array ëdecipheredMessageí;
+5- Quando a fun√ß√£o termina de percorrer as strings da mensagem o processo se encerra e os novos caracteres decodificados est√£o armazenados no array ‚ÄòdecipheredMessage‚Äô;
 
-6- Nesse momento È retornado a p·gina HTML a mensagem decodificada com a utilizaÁ„o da funÁ„o  Array.prototype.join() para unir os caracteres de forma contÌnua:
+6- Nesse momento √© retornado a p√°gina HTML a mensagem decodificada com a utiliza√ß√£o da fun√ß√£o  Array.prototype.join() para unir os caracteres de forma cont√≠nua:
   return document.getElementById('messageDeciphered').innerHTML = decipheredMessage.join('');
 
 Fim do processo
+
+![Fluxograma](CifradeCesarFluxograma.png)

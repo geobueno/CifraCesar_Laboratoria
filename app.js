@@ -23,7 +23,7 @@ function cipher(message,lag) {
     } else if (charCodeNum === 32) {
 	letterCiphered = 35;
 	cipheredMessage.push(String.fromCharCode(letterCiphered));
-	}
+    }
   }
   // Valor final processado, caracteres reunidos para formar a mensagem criptografada enviada ao HTML
   return document.getElementById('messageCiphered').innerHTML = cipheredMessage.join('');
@@ -46,9 +46,9 @@ function decipher(message,lag) {
         letterDeciphered = (charCodeNum -122 - lag) % 26 + 122;
 	decipheredMessage.push(String.fromCharCode(letterDeciphered));
     } else if (charCodeNum === 35){
-	 letterDeciphered = 32;
-	 decipheredMessage.push(String.fromCharCode(letterDeciphered));
-      }
+        letterDeciphered = 32;
+	decipheredMessage.push(String.fromCharCode(letterDeciphered));
+    }
   }
   // Valor final processado, caracteres reunidos para formar a mensagem descriptografada enviada ao HTML
   return document.getElementById('messageDeciphered').innerHTML = decipheredMessage.join('');
